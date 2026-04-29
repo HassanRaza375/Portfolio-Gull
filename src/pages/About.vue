@@ -1,7 +1,7 @@
 <template>
-  <section class="container mx-auto py-8 min-h-[calc(100vh-157px)]">
-    <div class="grid grid-cols-2">
-      <div class="pr-31">
+  <section class="container mx-auto py-8">
+    <div class="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 lg:gap-0 md:gap-3 sm:gap-3 gap-3">
+      <div class="lg:pr-31 md:pr-0 sm:pr-0 lg:order-1 md:order-2 sm:order-2 order-2">
         <img
           :src="gull_portrait"
           width="420"
@@ -11,8 +11,8 @@
           alt="gull khan"
         />
       </div>
-      <div>
-        <h1 class="font-semibold text-[48px] mb-6">About Me</h1>
+      <div class="lg:order-2 md:order-1 sm:order-1 order-1">
+        <h1 class="font-semibold text-[48px] lg:mb-6 md:mb-4 sm:mb-4 mb-3">About Me</h1>
         <p class="text-[16px] font-normal mb-6 text-muted">
           My name is Hafiz Gull, I'm a Product designer based in Lahore, who is
           passionate about creating and improving digital experiences. Over the
@@ -40,7 +40,7 @@
           identity and a digital product that adds value to people's lives.
         </p>
         <p class="text-[16px] font-normal text-muted">
-          <span
+          <span class="font-bold text-primary"
             >Reading deeply into product design and the psychology behind human
             behavior</span
           >

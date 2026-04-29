@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto py-8 min-h-[calc(100vh-157px)]">
+  <section class="container mx-auto py-8">
     <div>
       <h3 class="font-semibold mb-2">Project {{ id }}</h3>
       <p class="text-muted">Short description</p>
