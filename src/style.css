@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@theme {
+  --max-w-container: 1120px;
+
+  --color-primary: #000000;
+  --color-secondary: #737373;
+  --color-secondary-mute: #eeeeee;
+  --color-muted: #7e7e7e;
+
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f2f6fb;
+
+  --font-inter: "Inter", sans-serif;
+}
+@layer utilities {
+  /* Container */
+  .container {
+    max-width: var(--max-w-container);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Text Colors */
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .text-secondary-mute {
+    color: var(--color-secondary-mute);
+  }
+
+  .text-muted {
+    color: var(--color-muted);
+  }
+
+  /* Background Colors */
+  .bg-primary {
+    background-color: var(--color-bg-primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .bg-secondary-mute {
+    background-color: var(--color-secondary-mute);
+  }
+
+  /* Border Colors */
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+
+  .border-secondary {
+    border-color: var(--color-secondary);
+  }
+
+  .border-muted {
+    border-color: var(--color-muted);
+  }
+
+  /* Font */
+  .font-inter {
+    font-family: var(--font-inter);
+  }
+
+  /* Buttons (optional but useful) */
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem;
+  }
+
+  .btn-secondary {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Card */
+  .card {
+    background-color: var(--color-bg-primary);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+}
+/* your global styles */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.router-link-active {
+  color: #000000;
+  font-weight: 600;
+}

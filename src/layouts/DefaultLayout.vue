@@ -5,7 +5,7 @@
         <Header />
 
         <!-- Page Content -->
-        <main class="flex-1 max-w-6xl mx-auto w-full px-6 py-10">
+        <main>
             <router-view />
         </main>
 
