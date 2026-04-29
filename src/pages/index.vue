@@ -3,7 +3,7 @@
     <section id="hero">
       <HeroSection />
     </section>
-    <section id="project_1" v-for="counts in 5" :key="counts">
+    <section :id="`project_${counts}`" v-for="counts in 5" :key="counts">
       <Projects :count="counts"/>
     </section>
   </div>

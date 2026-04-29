@@ -45,7 +45,7 @@
         </div>
       </div>
       <div>
-        <img :src="gull_main" class="w-full h-auto max-w-140 max-h-181" width="580" height="724" loading="eager" alt="" />
+        <img :src="gull_main" class="w-full h-auto max-w-140 max-h-181 grayscale hover:grayscale-0 transition duration-300" width="580" height="724" loading="eager" alt="" />
       </div>
     </div>
   </div>

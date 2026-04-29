@@ -74,14 +74,21 @@
   .btn-primary {
     background-color: var(--color-primary);
     color: #ffffff;
-    padding: 0.5rem 1rem; 
-    border-radius: 0.5rem;
+    padding: 14px 28px;
+    border-radius: 114px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: max-content;
   }
 
   .btn-secondary {
-    background-color: var(--color-secondary);
+    background-color: var(--color-bg-primary);
     color: #ffffff;
-    padding: 0.5rem 1rem;
+    padding: 2rem;
     border-radius: 0.5rem;
   }
 
@@ -89,7 +96,7 @@
   .card {
     background-color: var(--color-bg-primary);
     border-radius: 0.75rem;
-    padding: 1rem;
+    padding: 2rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 }

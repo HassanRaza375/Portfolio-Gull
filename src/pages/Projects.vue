@@ -1,12 +1,14 @@
 <template>
-  <section id="projects" class="py-20 px-6">
-    <h2 class="text-2xl font-semibold mb-8">Projects</h2>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 bg-secondaryMute rounded-xl">
-        <h3 class="font-semibold mb-2">Project 1</h3>
-        <p class="text-muted">Short description</p>
-      </div>
+  <section class="container mx-auto py-8 min-h-[calc(100vh-157px)]">
+    <div>
+      <h3 class="font-semibold mb-2">Project {{ id }}</h3>
+      <p class="text-muted">Short description</p>
     </div>
   </section>
 </template>
+<script setup>
+import { useRoute } from "vue-router";
+import { ref } from "vue";
+const route = useRoute();
+const id = ref(route.params.id);
+</script>
