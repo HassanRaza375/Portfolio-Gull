@@ -6,7 +6,7 @@
           :src="gull_portrait"
           width="420"
           height="580"
-          class="w-full h-auto min-h-145"
+          class="w-full h-auto min-h-145 object-contain"
           loading="eager"
           alt="gull khan"
         />
@@ -54,5 +54,5 @@
   </section>
 </template>
 <script setup>
-import gull_portrait from "../assets/gull_portrait.png";
+import gull_portrait from "../assets/gull_portrait.webp";
 </script>

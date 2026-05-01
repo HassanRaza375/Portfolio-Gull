@@ -22,15 +22,26 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to) {
+  scrollBehavior(to, from, savedPosition) {
+    // 1. Back / forward navigation
+    if (savedPosition) {
+      return savedPosition
+    }
+
+    // 2. Hash navigation
     if (to.hash) {
       return {
         el: to.hash,
-        top: 97, // header height
+        top: 97,
         behavior: "smooth",
-      };
+      }
     }
-  },
+
+    // 3. Default → scroll to top
+    return {
+      top: 0,
+    }
+  }
 });
 
 export default router;

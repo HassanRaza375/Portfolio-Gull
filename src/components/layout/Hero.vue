@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="flex items-center justify-center">
-        <img :src="gull_main" class="w-full h-auto max-w-140 max-h-181 grayscale hover:grayscale-0 transition duration-300" width="580" height="724" loading="eager" alt="" />
+        <img :src="gull_main" class="w-full h-auto max-w-140 max-h-181 grayscale" width="580" height="724" loading="eager" alt="" />
       </div>
     </div>
   </div>
