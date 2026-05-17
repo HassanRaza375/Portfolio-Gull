@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 import DefaultLayout from "../layouts/DefaultLayout.vue";
+import dashboardLayout from "../layouts/dashboardLayout.vue";
 
-// Pages (we'll create these next)
 import Home from "../pages/index.vue";
 import About from "../pages/About.vue";
 import Projects from "../pages/Projects.vue";
 import Contact from "../pages/Contact.vue";
+import ImageUpload from "../pages/Dashboard/imageUpload.vue";
+import ProjectDetails from "../pages/Dashboard/index.vue";
+
+import NotFound from "../pages/404.vue";
 
 const routes = [
   {
@@ -17,6 +21,30 @@ const routes = [
       { path: "projects/:id", name: "Projects", component: Projects },
       { path: "contact", name: "Contact", component: Contact },
     ],
+  },
+
+  {
+    path: "/dashboard",
+    component: dashboardLayout,
+    children: [
+      {
+        path: "",
+        name: "ProjectDetails",
+        component: ProjectDetails,
+      },
+      {
+        path: "image-upload",
+        name: "ImageUpload",
+        component: ImageUpload,
+      },
+    ],
+  },
+
+  // Global 404
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 const router = createRouter({
