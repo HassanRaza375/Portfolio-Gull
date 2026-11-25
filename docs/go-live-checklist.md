@@ -1,6 +1,8 @@
 # Go-live checklist
 
-Nothing here is done for you. Work through it in order.
+Nothing here is done for you. Work through it in order. The reasons and the details behind each step, and the fixes for things that go wrong, are in [deployment-guide.md](deployment-guide.md).
+
+> **Two databases:** this project has a **test** database (used locally) and a **production** database (used by Vercel). A new database is empty, so the migration must be applied to **production** before the first deploy that uses it: [deployment guide, section 4.2](deployment-guide.md#42-applying-migrations-to-production-the-safe-way). Skipping this was the cause of the first production error (`The table public.Project does not exist`).
 
 ## 1. Before you deploy
 
@@ -63,7 +65,7 @@ For a Google Cloud or Azure service, choose the Vercel region in the same city. 
 - [ ] **CA certificate.** In the service overview, under Connection information, download the **CA certificate** and paste it into `DATABASE_CA_CERT`. The app trusts exactly that certificate and still checks the host name.
 - [ ] **Allowed IP addresses.** Leave the default (open to all addresses). Vercel functions do not have fixed IP addresses, so a short allow-list would lock them out. The connection is protected by TLS with the CA above and by the password. Only restrict it if you add Vercel's paid Static IPs.
 - [ ] **Connection limit.** Each running function instance opens at most one connection. If Aiven ever reports "too many connections", turn on **Connection pooling** in Aiven and use the pooler's connection string as `DATABASE_URL` (test the site after switching).
-- [ ] **Tables exist.** `npx prisma migrate deploy` has been run against this database (you ran it for development; run it again if production uses a different database).
+- [ ] **Tables exist in the PRODUCTION database.** Run `npx prisma migrate deploy` against it (the safe one-off command is in the [guide, section 4.2](deployment-guide.md#42-applying-migrations-to-production-the-safe-way)), and check the host Prisma prints is the production host. Then `/api/health` on the live site must say `{"database":"up"}`.
 - [ ] **Backups.** Confirm the plan includes backups, and that you know how to restore one.
 
 ## 4. Deploy and check
