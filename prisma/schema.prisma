@@ -1,0 +1,42 @@
+// Prisma 7: the connection URL lives in prisma.config.ts, and the runtime client uses the pg driver adapter (server/utils/db.ts).
+generator client {
+  provider = "prisma-client"
+  output   = "../server/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Each image field below is JSON shaped like { url, publicId, width, height }
+// (validated with zod in the server routes). width and height are the real pixel size,
+// used on the public pages to reserve space and avoid layout shift.
+model Project {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  summary     String
+  description String   @default("")
+  tags        String[] @default([])
+  projectUrl  String?
+  logo        Json?
+  cover       Json?
+  gallery     Json     @default("[]")
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Home lists published projects in sort order
+  @@index([published, sortOrder])
+}
+
+// One row per login attempt, for the "5 tries per minute per address" limit.
+// Serverless instances share no memory, so the count has to live in the database.
+model LoginAttempt {
+  id        Int      @id @default(autoincrement())
+  ip        String
+  createdAt DateTime @default(now())
+
+  @@index([ip, createdAt])
+}

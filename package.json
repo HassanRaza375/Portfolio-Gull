@@ -1,21 +1,40 @@
 {
-  "name": "my-app",
+  "name": "portfolio-gull",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare && prisma generate",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "hash-password": "node scripts/hash-password.mjs",
+    "optimize-images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.4",
-    "tailwindcss": "^4.2.4",
-    "vue": "^3.5.32",
-    "vue-router": "^5.0.6"
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "cloudinary": "2.11.0",
+    "nuxt": "^4.7.0",
+    "pg": "8.23.1",
+    "prisma": "7.10.1",
+    "tailwindcss": "^4.3.5",
+    "vue": "^3.5.46",
+    "vue-router": "^5.5.1",
+    "zod": "4.6.7"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.6",
-    "vite": "^8.0.10"
+    "@types/pg": "^8.23.1",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.1",
+    "vue-tsc": "^3.3.14"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

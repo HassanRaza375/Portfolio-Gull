@@ -12,6 +12,21 @@ dist
 dist-ssr
 *.local
 
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Generated Prisma client (created by `prisma generate` in postinstall)
+server/generated
+
+# Nuxt / Vercel
+.nuxt
+.nuxt-*
+.output
+.nitro
+.vercel
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

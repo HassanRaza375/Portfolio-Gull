@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+/* Inter, self-hosted (variable font, weights 100-900; from the OFL-licensed @fontsource-variable/inter package).
+   Only the Latin file is downloaded for normal text; Latin Extended loads only if a page uses those characters.
+   There is no request to Google Fonts. The Latin file is preloaded in app.vue. */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/inter-latin-wght.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/inter-latin-ext-wght.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* A local font sized to match Inter, so text does not jump when Inter swaps in */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.64%;
+  ascent-override: 89.97%;
+  descent-override: 22.42%;
+  line-gap-override: 0%;
+}
+
+@theme {
+  --font-sans: 'Inter Variable', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #000000;
+  --color-grey: #737373;
+  --color-chip: #eeeeee;
+  --color-section: #f2f6fb;
+  --color-divider: #afafaf;
+  /* About page body grey: #6b6b6b reaches 4.5:1 on white (the old #7e7e7e did not). */
+  --color-about-grey: #6b6b6b;
+
+  --container-page: 1120px;
+}
+
+/* Visible keyboard focus on every control. A real utility, so it can be used in templates and with @apply. */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-white text-ink antialiased;
+  }
+}
+
+@layer components {
+  /* 1120px container with 16px side padding, so content is 1088px wide */
+  .page-container {
+    @apply mx-auto w-full max-w-[1120px] px-4;
+  }
+
+  /* Primary button: black pill, 14px by 28px padding, 13px semibold, uppercase */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-ink px-7 py-3.5 text-[13px] font-semibold uppercase tracking-wide text-white;
+  }
+
+  /* Chip: pill, 5px by 10px padding, 14px medium */
+  .chip {
+    @apply inline-flex items-center rounded-full bg-chip px-2.5 py-[5px] text-sm font-medium text-ink;
+  }
+
+  /* Admin: cards, form fields, secondary buttons (same look: white and #f2f6fb, black pills, 12px radius) */
+  .panel {
+    @apply rounded-xl bg-white p-6 shadow-sm;
+  }
+  .field-label {
+    @apply block text-sm font-semibold;
+  }
+  .field-input {
+    @apply focus-ring mt-2 w-full rounded-xl border border-[#d4d4dc] bg-white px-4 py-3 text-base placeholder:text-about-grey aria-[invalid=true]:border-[#b42318];
+  }
+  .field-hint {
+    @apply mt-2 text-sm text-about-grey;
+  }
+  .field-error {
+    @apply mt-2 text-sm font-medium text-[#b42318];
+  }
+  .btn-outline {
+    @apply focus-ring inline-flex items-center justify-center rounded-full border border-ink bg-white px-6 py-3 text-[13px] font-semibold uppercase tracking-wide text-ink disabled:opacity-50;
+  }
+  .btn-small {
+    @apply focus-ring inline-flex items-center justify-center rounded-full border border-ink bg-white px-4 py-2 text-sm font-semibold text-ink disabled:opacity-50;
+  }
+  .icon-btn {
+    @apply focus-ring inline-flex size-8 items-center justify-center rounded-lg border border-[#d4d4dc] bg-white text-ink hover:bg-section disabled:cursor-not-allowed disabled:opacity-40;
+  }
+}
