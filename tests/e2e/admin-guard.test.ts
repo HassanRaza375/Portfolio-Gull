@@ -55,6 +55,7 @@ beforeAll(async () => {
       DATABASE_CA_FILE: '',
       CLOUDINARY_URL: 'cloudinary://123456:fake-secret-value-for-tests@democloud', // fake: nothing is sent to Cloudinary
       CLOUDINARY_FOLDER: 'test-folder',
+      NUXT_PUBLIC_SITE_URL: 'https://example.test/', // with a trailing slash on purpose: the site must not produce "//" in its links
       ADMIN_EMAIL: 'admin@example.com',
       ADMIN_PASSWORD_HASH: hash,
       SESSION_SECRET: SECRET,
@@ -163,6 +164,15 @@ describe('public site', () => {
     expect(html).toMatch(/<h1[^>]*>About Me<\/h1>/)
     expect(html).toMatch(/<a href="#main"[^>]*>Skip to content<\/a>/)
     expect(html).toMatch(/<main id="main"/)
+  })
+
+  it('uses the site address from the environment without doubling its trailing slash', async () => {
+    const html = await (await get('/about')).text()
+    expect(html).toContain('<link rel="canonical" href="https://example.test/about"')
+    expect(html).toContain('<meta property="og:image" content="https://example.test/og.jpg"')
+    expect(html).not.toMatch(/https:\/\/example\.test\/\//)
+    const robots = await (await get('/robots.txt')).text()
+    expect(robots).toContain('Sitemap: https://example.test/sitemap.xml')
   })
 
   it('generates the footer year', async () => {

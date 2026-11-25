@@ -1,10 +1,11 @@
 // /sitemap.xml: Home, About and every published project.
+import { siteOrigin } from '../../shared/utils/siteUrl'
 import { useDb } from '../utils/db'
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 export default defineEventHandler(async (event) => {
-  const origin = useRuntimeConfig(event).public.siteUrl as string
+  const origin = siteOrigin(useRuntimeConfig(event).public.siteUrl as string)
   const rows = await useDb().project.findMany({
     where: { published: true },
     orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],

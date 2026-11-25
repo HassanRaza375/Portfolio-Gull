@@ -12,7 +12,7 @@ interface SeoOptions {
 }
 
 export function useSeo({ title, description, path, image, imageAlt, noindex }: SeoOptions) {
-  const origin = useRuntimeConfig().public.siteUrl as string
+  const origin = siteOrigin(useRuntimeConfig().public.siteUrl as string)
   const url = `${origin}${path}`
   const shareImage = image ?? `${origin}/og.jpg`
   const text = description.length > 160 ? `${description.slice(0, 157).trimEnd()}…` : description

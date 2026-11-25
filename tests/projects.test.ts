@@ -109,6 +109,17 @@ describe('signed uploads', () => {
   })
 })
 
+describe('site address', () => {
+  it('never ends with a slash, so "${origin}/about" has no double slash', async () => {
+    const { siteOrigin } = await import('../shared/utils/siteUrl')
+    expect(siteOrigin('https://example.com/')).toBe('https://example.com')
+    expect(siteOrigin('https://example.com///')).toBe('https://example.com')
+    expect(siteOrigin('  https://example.com  ')).toBe('https://example.com')
+    expect(siteOrigin('https://example.com')).toBe('https://example.com')
+    expect(siteOrigin(undefined)).toBe('')
+  })
+})
+
 describe('safe log messages', () => {
   it('removes the Cloudinary secret and key from an error message and keeps it short', async () => {
     const { safeMessage } = await import('../server/utils/cloudinary')
